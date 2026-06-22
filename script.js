@@ -8,7 +8,6 @@ const jokes = [
 
 const btn = document.getElementById('jokeBtn');
 const funBtn = document.getElementById('funBtn');
-const treatBtn = document.getElementById('treatBtn');
 const bubble = document.getElementById('bubble');
 const dog = document.getElementById('dog');
 
@@ -47,74 +46,51 @@ function tellJoke(){
 
 btn.addEventListener('click', tellJoke);
 
-// Po stisknutí "To je vtipné!" ocásek vrtí
 if(funBtn){
   funBtn.addEventListener('click', ()=>{
-    lastJokeLiked = true;
-    const msg = 'Jupí! Díky, mám rád pamlsky.';
-    bubble.textContent = msg;
-    speak(msg);
-  });
-}
-if(treatBtn){
-  treatBtn.addEventListener('click', ()=>{
-    const btnRect = treatBtn.getBoundingClientRect();
-    const startX = btnRect.left + btnRect.width/2;
-    const startY = btnRect.top + btnRect.height/2;
-
-    const dogImg = document.getElementById('dogImg');
-    let endX, endY;
-    if(dogImg){
-      const d = dogImg.getBoundingClientRect();
-      endX = d.left + d.width * 0.68;
-      endY = d.top + d.height * 0.5;
-    } else {
-      const d = dog.getBoundingClientRect();
-      endX = d.left + d.width * 0.8;
-      endY = d.top + d.height * 0.5;
+    if(!lastJoke){
+      const msg = 'Nejdřív mi řekni vtip, a potom mi můžeš dát kostí pamlsek.';
+      bubble.textContent = msg;
+      speak(msg);
+      return;
     }
 
-    // vytvořit element pamlsku
-    const t = document.createElement('div');
-    t.className = 'treat-anim';
-    const size = 18;
-    t.style.left = (startX - size/2) + 'px';
-    t.style.top = (startY - size/2) + 'px';
-    document.body.appendChild(t);
-
-    const dx = endX - startX;
-    const dy = endY - startY;
-
-    const anim = t.animate([
-      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-      { transform: `translate(${dx}px, ${dy}px) scale(0.9)`, opacity: 0.95 }
-    ], { duration: 700, easing: 'cubic-bezier(.2,.9,.2,1)' });
-
-    anim.onfinish = ()=>{
-      t.remove();
-
-      if(!lastJoke){
-        const msg = 'Nejdřív mi řekni vtip, a potom mi dej pamlsek.';
-        bubble.textContent = msg;
-        speak(msg);
-        return;
-      }
-
-      if(lastJokeLiked){
-        const msg = 'Díky! Jsem spokojený — ale můžeme zkusit další.';
-        bubble.textContent = msg;
-        speak(msg);
-        return;
-      }
-
-      const better = betterJokes[Math.floor(Math.random()*betterJokes.length)];
-      lastJoke = better;
-      lastJokeLiked = false;
-      bubble.textContent = better;
-      // po vyjedení pamlsku řekne lepší vtip
-      setTimeout(()=> speak(better), 200);
-    };
+    lastJokeLiked = true;
+    animateBoneTreat(funBtn, ()=>{
+      const msg = 'Jupí! Kost přiletěla do pusy a já mám radost.';
+      bubble.textContent = msg;
+      speak(msg);
+    });
   });
+}
+
+function animateBoneTreat(button, callback){
+  const btnRect = button.getBoundingClientRect();
+  const startX = btnRect.left + btnRect.width / 2;
+  const startY = btnRect.top + btnRect.height / 2;
+  const d = dog.getBoundingClientRect();
+  const endX = d.left + d.width * 0.72;
+  const endY = d.top + d.height * 0.45;
+
+  const t = document.createElement('div');
+  t.className = 'treat-anim';
+  t.textContent = '🦴';
+  const size = 26;
+  t.style.left = (startX - size / 2) + 'px';
+  t.style.top = (startY - size / 2) + 'px';
+  document.body.appendChild(t);
+
+  const dx = endX - startX;
+  const dy = endY - startY;
+  const anim = t.animate([
+    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+    { transform: `translate(${dx}px, ${dy}px) scale(0.95)`, opacity: 0.95 }
+  ], { duration: 700, easing: 'cubic-bezier(.2,.9,.2,1)' });
+
+  anim.onfinish = ()=>{
+    t.remove();
+    if(typeof callback === 'function') callback();
+  };
 }
 
 window.addEventListener('DOMContentLoaded', ()=>{
