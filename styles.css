@@ -1,0 +1,27 @@
+:root{
+  --bg:#f0f6f9;
+  --card:#ffffff;
+  --accent:#7A4A3B;
+  --muted:#6b6b6b;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; color:#222}
+.app{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+h1{margin:0 0 1rem 0;font-size:2rem}
+.card{background:var(--card);padding:1.5rem;border-radius:14px;box-shadow:0 8px 24px rgba(20,20,20,0.08);max-width:420px;width:100%;text-align:center}
+.dog{width:300px;height:200px;margin:0 auto 1rem auto}
+.dog img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.bubble{background:linear-gradient(180deg,#ffffff,#f7f7f7);border-radius:12px;padding:0.8rem 1rem;margin-bottom:1rem;color:var(--muted);box-shadow:inset 0 -1px 0 rgba(0,0,0,0.03)}
+.controls{display:flex;gap:0.6rem;justify-content:center;margin-top:0.6rem}
+.btn{background:var(--accent);color:white;border:none;padding:0.75rem 1.2rem;border-radius:10px;font-size:1rem;cursor:pointer}
+.btn:hover{filter:brightness(1.05)}
+.btn.secondary{background:white;color:var(--accent);border:2px solid var(--accent)}
+/* pamlsek tlačítko */
+.btn.treat{background:#4CAF50;border:2px solid rgba(0,0,0,0.06)}
+.btn.treat:hover{filter:brightness(1.02)}
+.hint{margin-top:1rem;color:var(--muted);font-size:0.9rem}
+
+/* Styl pro animovaný pamlsek */
+.treat-anim{position:fixed;width:18px;height:18px;border-radius:6px;background:#e0a84b;box-shadow:0 4px 8px rgba(0,0,0,0.12);z-index:9999;pointer-events:none}
+
+@media (max-width:420px){.dog{width:260px;height:160px}}

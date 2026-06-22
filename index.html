@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vtipný buldog</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Vtipný buldog</h1>
+
+    <div class="card">
+      <div id="dog" class="dog" aria-hidden="false">
+        <!-- Reálná fotka buldoga. Nahraj obrázek s názvem 'bulldog.jpg' do kořene projektu nebo uprav zdroj. -->
+        <img id="dogImg" src="bulldog.jpg" alt="Buldog" width="300" height="200">
+      </div>
+
+      <div class="bubble" id="bubble">Ahoj! Jsem Vtipný buldog. Stiskni tlačítko pro vtip.</div>
+
+      <div class="controls">
+        <button id="jokeBtn" class="btn">Řekni vtip</button>
+        <button id="funBtn" class="btn secondary">To je vtipné!</button>
+        <button id="treatBtn" class="btn treat">Dej pamlsek</button>
+      </div>
+    </div>
+
+    <footer class="hint">Vtipy jsou krátké a v češtině.</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
