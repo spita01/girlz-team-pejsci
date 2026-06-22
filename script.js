@@ -3,7 +3,12 @@ const jokes = [
   'Jak se jmenuje buldog kouzelník? Abrakadabrador.',
   'Co řekl buldog, když viděl hromadu listí? Tohle je můj nový pelíšek.',
   'Proč buldog nosí hodinky? Aby věděl, kdy je čas na pamlsek.',
-  'Jaký je nejoblíbenější sport buldoga? Hledání pamlsků.'
+  'Jaký je nejoblíbenější sport buldoga? Hledání pamlsků.',
+  'Proč pes nechce jít do práce? Protože už má za sebou celý den štěkání.',
+  'Jaký vtip se líbí psovi nejvíc? Ten, kde je v něm kousek klobásy.',
+  'Co řekl pes, když se naučil plavat? Mám ploutve, ale radši mám pamlsky.',
+  'Proč pes vletěl do kavárny? Hledal šunku do sendviče.',
+  'Jak se pes omlouvá? Promiň, měl jsem plnou tlapku práce.'
 ];
 
 const btn = document.getElementById('jokeBtn');
@@ -69,8 +74,8 @@ function animateBoneTreat(button, callback){
   const startX = btnRect.left + btnRect.width / 2;
   const startY = btnRect.top + btnRect.height / 2;
   const d = dog.getBoundingClientRect();
-  const endX = d.left + d.width * 0.72;
-  const endY = d.top + d.height * 0.45;
+  const endX = d.left + d.width * 0.5;
+  const endY = d.top + d.height * 0.5;
 
   const t = document.createElement('div');
   t.className = 'treat-anim';
